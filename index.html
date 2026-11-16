@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research Paper Studio</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header><div class="brand">R<span>•</span>PS</div><div><h1>Research Paper Studio</h1><p>AI-assisted academic writing, literature discovery and manuscript improvement</p></div><button id="lock" class="outline">Lock app</button></header>
+<main>
+<div id="login" class="panel login">
+<h2>Private workspace</h2><p>Enter the application password configured by the administrator.</p>
+<input id="password" type="password" placeholder="Application password" autocomplete="current-password">
+<button id="unlock">Unlock workspace</button><p id="loginMsg" class="status"></p>
+</div>
+<div id="workspace" hidden>
+<div class="notice"><b>Research integrity:</b> AI output is a draft. Verify every claim, source, DOI, calculation and journal requirement. Never submit fabricated data or references. The app does not guarantee acceptance or indexing.</div>
+<nav class="tabs">
+<button class="tab active" data-view="writer">AI Writer</button>
+<button class="tab" data-view="literature">Literature Search</button>
+<button class="tab" data-view="review">Manuscript Reviewer</button>
+<button class="tab" data-view="format">Format Converter</button>
+</nav>
+<section id="writer" class="panel view">
+<div class="sectionhead"><div><h2>AI Research Paper Writer</h2><p>Generate section-by-section or request a complete first draft.</p></div><span class="pill" id="modelPill">AI connected</span></div>
+<div class="grid">
+<div><label>Research topic *</label><input id="topic" placeholder="e.g. Explainable federated learning for smart homes"></div>
+<div><label>Discipline</label><input id="discipline" placeholder="Computer Science and Engineering"></div>
+<div><label>Paper type</label><select id="paperType"><option>Research article</option><option>Narrative review</option><option>Systematic review</option><option>Scoping review</option><option>IEEE conference paper</option><option>Survey paper</option></select></div>
+<div><label>Target style</label><select id="style"><option>IEEE</option><option>Springer</option><option>Elsevier</option><option>APA 7</option><option>ACM</option><option>Vancouver</option></select></div>
+<div><label>Drafting mode</label><select id="section"><option>Complete manuscript draft (structured sections)</option><option>Title, Abstract and Keywords</option><option>Introduction</option><option>Literature Review</option><option>Research Gap and Objectives</option><option>Research Methodology</option><option>Results</option><option>Discussion</option><option>Conclusion</option><option>Limitations and Future Work</option><option>Response to Reviewer Comments</option></select></div>
+<div><label>Target length</label><select id="length"><option>Approximately 6 pages</option><option>Approximately 8 pages</option><option>Approximately 10 pages</option><option>Detailed journal article</option><option>Concise section only</option></select></div>
+<div class="wide"><label>Research question / objectives</label><textarea id="objective" placeholder="State the research problem, questions and objectives."></textarea></div>
+<div class="wide"><label>Actual methodology, dataset and tools</label><textarea id="method" placeholder="Describe only what you actually did or plan to do."></textarea></div>
+<div class="wide"><label>Actual findings / results</label><textarea id="findings" placeholder="Paste your real metrics, observations, tables or findings. If not available, leave blank; the AI should use placeholders."></textarea></div>
+<div class="wide"><label>References already collected (optional)</label><textarea id="references" placeholder="Paste verified references, DOI links or source excerpts."></textarea></div>
+<div class="wide checkline"><input type="checkbox" id="useWeb" checked><label for="useWeb">Use live web search to discover supporting literature (verify all sources before citing)</label></div>
+</div>
+<div class="actions"><button id="generate">Generate with AI</button><button class="secondary" id="saveDraft">Save draft in this browser</button><button class="secondary" id="loadDraft">Load saved draft</button><button class="secondary" id="clearDraft">Clear</button></div>
+<p id="writerStatus" class="status"></p>
+<label for="output">Editable manuscript output</label><textarea id="output" class="editor" placeholder="Your AI-generated manuscript will appear here. You can edit it before exporting."></textarea>
+<div class="actions"><button id="export">Download Word (.docx)</button><button class="secondary" id="copyOutput">Copy text</button></div>
+</section>
+<section id="literature" class="panel view" hidden>
+<h2>Literature and reference discovery</h2><p>Search Crossref metadata for papers, authors, publication years and DOI links.</p>
+<div class="searchrow"><input id="refQuery" placeholder="Search topic, exact title, author or phrase"><button id="searchRefs">Search literature</button></div>
+<p id="refStatus" class="status"></p><div id="refResults"></div>
+</section>
+<section id="review" class="panel view" hidden>
+<h2>AI Manuscript Reviewer</h2><p>Get structured feedback on clarity, methodology, reproducibility, limitations and likely reviewer concerns.</p>
+<label>Paste manuscript text</label><textarea id="reviewText" class="editor" placeholder="Paste your manuscript text here (up to 50,000 characters)."></textarea>
+<div class="actions"><button id="reviewBtn">Review manuscript</button></div><p id="reviewStatus" class="status"></p>
+<label>Review report</label><textarea id="reviewOutput" class="editor" placeholder="The review report will appear here."></textarea>
+</section>
+<section id="format" class="panel view" hidden>
+<h2>Journal / Conference Format Converter</h2><p>Upload a DOCX manuscript and create a reorganized DOCX draft for the selected style.</p>
+<div class="grid">
+<div><label>Target format</label><select id="formatStyle"><option>IEEE</option><option>Springer</option><option>Elsevier</option><option>APA 7</option><option>ACM</option><option>Vancouver</option></select></div>
+<div><label>Manuscript (.docx)</label><input type="file" id="manuscript" accept=".docx"></div>
+</div>
+<div class="actions"><button id="convert">Convert and download DOCX</button></div><p id="formatStatus" class="status"></p>
+<div class="notice subtle">This version extracts manuscript text and reflows headings and paragraphs. It does not preserve original images, complex tables, equations, section breaks, tracked changes or exact publisher-specific page layouts. Use the official template for the final submission.</div>
+</section>
+<footer>Private workspace · API key remains on the server · Drafts are stored in this browser only unless you export them.</footer>
+</div>
+</main>
+<script src="/app.js" defer></script>
+</body></html>
